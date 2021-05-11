@@ -11,6 +11,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 
+
 public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton floatingActionButton;
@@ -24,7 +25,9 @@ public class MainActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(v,"Hellow",Snackbar.LENGTH_SHORT).show();
+
+
+
             }
         });
 
