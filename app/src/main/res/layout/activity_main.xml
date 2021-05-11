@@ -39,6 +39,8 @@
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
         android:padding="6dp"
+
+        android:paddingBottom="12dp"
         android:visibility="visible">
 
     </androidx.recyclerview.widget.RecyclerView>

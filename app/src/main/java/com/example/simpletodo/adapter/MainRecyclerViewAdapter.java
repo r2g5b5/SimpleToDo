@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simpletodo.R;
 import com.example.simpletodo.model.Task;
+import com.example.simpletodo.util.Utils;
 import com.google.android.material.chip.Chip;
 
 import org.jetbrains.annotations.NotNull;
@@ -41,6 +42,9 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
     public void onBindViewHolder(@NonNull @NotNull MainRecyclerViewAdapter.ViewHolder holder, int position) {
         Task task=tasks.get(position);
         holder.txtTaskName.setText(task.getTask());
+
+
+        holder.chip.setText(Utils.formatDate(task.getDueDate()));
 
     }
 
