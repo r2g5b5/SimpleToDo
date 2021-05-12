@@ -10,11 +10,12 @@ import androidx.room.TypeConverters;
 import com.example.simpletodo.data.TaskDao;
 import com.example.simpletodo.model.Task;
 
-@Database(entities = Task.class,version = 1, exportSchema = false)
+@Database(entities = Task.class, version = 1, exportSchema = false)
 @TypeConverters(Converter.class)
 public abstract class TaskDatabase extends RoomDatabase {
 
     private static volatile TaskDatabase instance;
+
     public abstract TaskDao taskDao();
 
     public static synchronized TaskDatabase getInstance(final Context context) {
@@ -25,11 +26,6 @@ public abstract class TaskDatabase extends RoomDatabase {
         }
         return instance;
     }
-
-
-
-
-
 
 
 }

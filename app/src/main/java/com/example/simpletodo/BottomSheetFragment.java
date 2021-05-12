@@ -48,6 +48,8 @@ public class BottomSheetFragment extends BottomSheetDialogFragment {
     private Chip chipTomorrow;
     private Chip chipNextWeek;
 
+    private TaskPriority taskPriority;
+
     private TaskViewModel taskViewModel;
 
     private Date date;
@@ -82,6 +84,7 @@ public class BottomSheetFragment extends BottomSheetDialogFragment {
             Task task = sharedViewModel.getSelectedItem().getValue();
             update = sharedViewModel.getUpdate();
             edtToDoTask.setText(task.getTask());
+            calendarView.setDate(task.getDueDate().getTime());
 
         }
 
@@ -106,13 +109,13 @@ public class BottomSheetFragment extends BottomSheetDialogFragment {
             public void onClick(View v) {
                 String taskToDo = edtToDoTask.getText().toString();
 
-                if (!taskToDo.isEmpty()) {
+                if (!taskToDo.isEmpty() && taskPriority != null) {
                     if (date == null) {
                         Toast.makeText(getActivity(), "Please select a date", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
-                    Task task = new Task(taskToDo, TaskPriority.HIGH, date,
+                    Task task = new Task(taskToDo, taskPriority, date,
                             Calendar.getInstance().getTime(), false);
 
                     if (update) {
@@ -120,7 +123,7 @@ public class BottomSheetFragment extends BottomSheetDialogFragment {
                         updateTask.setTask(taskToDo);
                         updateTask.setCreatedDate(Calendar.getInstance().getTime());
                         updateTask.setDueDate(date);
-                        updateTask.setTaskPriority(TaskPriority.HIGH);
+                        updateTask.setTaskPriority(taskPriority);
 
 
                         taskViewModel.updateTask(updateTask);
@@ -159,9 +162,31 @@ public class BottomSheetFragment extends BottomSheetDialogFragment {
         imgPriority.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 Utils.hideKeyBord(v);
+                radioGroup.setVisibility(radioGroup.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+
+                radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        if (radioGroup.getVisibility() == View.VISIBLE) {
+                            selectedItemId = checkedId;
+                            selectedRadioButton = view.findViewById(selectedItemId);
+
+                            if (selectedRadioButton.getId() == R.id.bottom_sheet_radioButton_high) {
+                                taskPriority = TaskPriority.HIGH;
+                            } else if (selectedRadioButton.getId() == R.id.bottom_sheet_radioButton_med) {
+                                taskPriority = TaskPriority.MEDIUM;
+                            } else if (selectedRadioButton.getId() == R.id.bottom_sheet_radioButton_low) {
+                                taskPriority = TaskPriority.LOW;
+                            } else {
+                                taskPriority = TaskPriority.LOW;
+                            }
+
+                        } else {
+                            taskPriority = TaskPriority.LOW;
+                        }
+                    }
+                });
             }
         });
 

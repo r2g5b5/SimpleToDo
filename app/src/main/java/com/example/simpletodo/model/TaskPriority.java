@@ -1,5 +1,5 @@
 package com.example.simpletodo.model;
 
-public enum  TaskPriority {
-    HIGH,MEDIUM,LOW
+public enum TaskPriority {
+    HIGH, MEDIUM, LOW
 }

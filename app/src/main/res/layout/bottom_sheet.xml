@@ -6,9 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
+    android:paddingBottom="12dp"
     app:behavior_hideable="false"
     app:behavior_peekHeight="32dp"
-    android:paddingBottom="12dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
 
@@ -31,10 +31,10 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
+        android:contentDescription="button image"
         app:layout_constraintStart_toEndOf="@+id/bottom_sheet_imgTodayCalendar"
         app:layout_constraintTop_toBottomOf="@+id/bottom_sheet_edtEnterTodo"
-        app:srcCompat="@drawable/ic_baseline_outlined_flag_24"
-        android:contentDescription="button image" />
+        app:srcCompat="@drawable/ic_baseline_outlined_flag_24" />
 
     <ImageButton
         android:id="@+id/bottom_sheet_imgSaveTodo"
@@ -42,9 +42,9 @@
         android:layout_height="72dp"
         android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
+        android:contentDescription="TODO"
         android:scaleX="0.4"
         android:scaleY="0.4"
-        android:contentDescription="TODO"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.843"
         app:layout_constraintStart_toEndOf="@+id/bottom_sheet_imgPriorityTodo"
@@ -56,9 +56,9 @@
         android:layout_width="74dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:contentDescription="button image"
         android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
+        android:contentDescription="button image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bottom_sheet_edtEnterTodo"
         app:srcCompat="@drawable/ic_baseline_calendar_today_24" />
@@ -155,6 +155,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/holo_blue_light"
+            android:checked="true"
             android:text="Low" />
     </RadioGroup>
 

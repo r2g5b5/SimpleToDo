@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 public class SharedViewModel extends ViewModel {
 
-    private final MutableLiveData<Task> selectedItem=new MutableLiveData<>();
+    private final MutableLiveData<Task> selectedItem = new MutableLiveData<>();
 
     private boolean update;
 
@@ -18,11 +18,11 @@ public class SharedViewModel extends ViewModel {
         this.update = update;
     }
 
-    public void selectedItem(Task task){
+    public void selectedItem(Task task) {
         selectedItem.setValue(task);
     }
 
-    public LiveData<Task> getSelectedItem(){
+    public LiveData<Task> getSelectedItem() {
         return selectedItem;
     }
 

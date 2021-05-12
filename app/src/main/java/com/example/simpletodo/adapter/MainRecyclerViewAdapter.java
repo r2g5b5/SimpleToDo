@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -23,18 +24,17 @@ import java.util.List;
 
 public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder> {
 
-    private  List<Task> tasks=new ArrayList<>();
+    private List<Task> tasks = new ArrayList<>();
 
-    private  OnTaskClickListener onTaskClickListener;
-
+    private OnTaskClickListener onTaskClickListener;
 
 
     public void setOnTaskClickListener(OnTaskClickListener onTaskClickListener) {
         this.onTaskClickListener = onTaskClickListener;
     }
 
-    public void  setTasks(List<Task> tasks){
-        this.tasks=tasks;
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
         notifyDataSetChanged();
     }
 
@@ -53,11 +53,14 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull MainRecyclerViewAdapter.ViewHolder holder, int position) {
-        Task task=tasks.get(position);
+        Task task = tasks.get(position);
         holder.txtTaskName.setText(task.getTask());
 
 
         holder.chip.setText(Utils.formatDate(task.getDueDate()));
+
+        holder.chip.setTextColor(Utils.priorityColor(task));
+        holder.imgCircle.setColorFilter(Utils.priorityColor(task));
 
     }
 
@@ -66,17 +69,17 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         return tasks.size();
     }
 
-    public  class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView txtTaskName;
         private Chip chip;
-        private RadioButton radioButton;
+        private ImageView imgCircle;
 
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
-            txtTaskName=itemView.findViewById(R.id.row_txtTaskName);
-            chip=itemView.findViewById(R.id.row_todo_chip);
-            radioButton=itemView.findViewById(R.id.row_todo_RadioButton);
+            txtTaskName = itemView.findViewById(R.id.row_txtTaskName);
+            chip = itemView.findViewById(R.id.row_todo_chip);
+            imgCircle = itemView.findViewById(R.id.row_todo_imgCircle);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -84,7 +87,6 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
                     onTaskClickListener.onItemClicked(tasks.get(getAdapterPosition()));
                 }
             });
-
 
 
         }

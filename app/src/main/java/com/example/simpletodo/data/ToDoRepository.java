@@ -15,16 +15,16 @@ public class ToDoRepository {
     private final LiveData<List<Task>> allTasks;
 
     public ToDoRepository(Application application) {
-        TaskDatabase taskDatabase=TaskDatabase.getInstance(application);
-        this.taskDao=taskDatabase.taskDao();
+        TaskDatabase taskDatabase = TaskDatabase.getInstance(application);
+        this.taskDao = taskDatabase.taskDao();
         this.allTasks = taskDao.getTasks();
     }
 
-    public LiveData<List<Task>> getAllTasks(){
+    public LiveData<List<Task>> getAllTasks() {
         return allTasks;
     }
 
-    public void insertTask(Task task){
+    public void insertTask(Task task) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -33,11 +33,13 @@ public class ToDoRepository {
         }).start();
     }
 
-    public LiveData<Task> getTask(int id){
+    public LiveData<Task> getTask(int id) {
         return taskDao.getTask(id);
-    };
+    }
 
-    public void updateTask(Task task){
+    ;
+
+    public void updateTask(Task task) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -46,7 +48,7 @@ public class ToDoRepository {
         }).start();
     }
 
-    public void deleteTask(Task task){
+    public void deleteTask(Task task) {
         new Thread(new Runnable() {
             @Override
             public void run() {

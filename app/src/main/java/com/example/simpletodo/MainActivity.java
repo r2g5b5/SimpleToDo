@@ -74,40 +74,38 @@ public class MainActivity extends AppCompatActivity implements OnTaskClickListen
         taskViewModel.getAllTasks().observe(MainActivity.this, new Observer<List<Task>>() {
             @Override
             public void onChanged(List<Task> tasks) {
-               mainRecyclerViewAdapter.setTasks(tasks);
+                mainRecyclerViewAdapter.setTasks(tasks);
             }
         });
-
-
 
 
     }
 
     private void showbottomSheetFragment() {
-        bottomSheetFragment.show(getSupportFragmentManager(),bottomSheetFragment.getTag());
+        bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
     }
 
     private void init() {
-        Toolbar toolbar=findViewById(R.id.main_toolbar);
+        Toolbar toolbar = findViewById(R.id.main_toolbar);
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
 
-        floatingActionButton=findViewById(R.id.main_fab);
-        taskViewModel= new ViewModelProvider(MainActivity.this,
+        floatingActionButton = findViewById(R.id.main_fab);
+        taskViewModel = new ViewModelProvider(MainActivity.this,
                 ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(TaskViewModel.class);
 
-        recyclerView=findViewById(R.id.main_recycler_view);
+        recyclerView = findViewById(R.id.main_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-        mainRecyclerViewAdapter=new MainRecyclerViewAdapter();
+        mainRecyclerViewAdapter = new MainRecyclerViewAdapter();
         recyclerView.setAdapter(mainRecyclerViewAdapter);
-        bottomSheetFragment=new BottomSheetFragment();
+        bottomSheetFragment = new BottomSheetFragment();
         ConstraintLayout mainConstraintLayout = findViewById(R.id.bottom_sheet_constraintLayout);
         BottomSheetBehavior<ConstraintLayout> bottomSheetBehavior = BottomSheetBehavior.from(mainConstraintLayout);
         bottomSheetBehavior.setPeekHeight(BottomSheetBehavior.STATE_HIDDEN);
         mainRecyclerViewAdapter.setOnTaskClickListener(this);
 
-        sharedViewModel=new ViewModelProvider(this).get(SharedViewModel.class);
+        sharedViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
 
 
     }
