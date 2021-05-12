@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simpletodo.R;
+import com.example.simpletodo.model.SharedViewModel;
 import com.example.simpletodo.model.Task;
 import com.example.simpletodo.util.Utils;
 import com.google.android.material.chip.Chip;
@@ -24,9 +25,21 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
 
     private  List<Task> tasks=new ArrayList<>();
 
+    private  OnTaskClickListener onTaskClickListener;
+
+
+
+    public void setOnTaskClickListener(OnTaskClickListener onTaskClickListener) {
+        this.onTaskClickListener = onTaskClickListener;
+    }
+
     public void  setTasks(List<Task> tasks){
         this.tasks=tasks;
         notifyDataSetChanged();
+    }
+
+    public Task getTask(int position) {
+        return tasks.get(position);
     }
 
 
@@ -53,7 +66,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         return tasks.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public  class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView txtTaskName;
         private Chip chip;
@@ -64,6 +77,14 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
             txtTaskName=itemView.findViewById(R.id.row_txtTaskName);
             chip=itemView.findViewById(R.id.row_todo_chip);
             radioButton=itemView.findViewById(R.id.row_todo_RadioButton);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onTaskClickListener.onItemClicked(tasks.get(getAdapterPosition()));
+                }
+            });
+
 
 
         }

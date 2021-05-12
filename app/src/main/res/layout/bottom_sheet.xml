@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/bottomSheet"
+    android:id="@+id/bottom_sheet_constraintLayout"
     style="@style/Animation.Design.BottomSheetDialog"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
     app:behavior_hideable="false"
     app:behavior_peekHeight="32dp"
+    android:paddingBottom="12dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
 
@@ -162,6 +163,7 @@
         android:layout_width="280dp"
         android:layout_height="0dp"
         android:visibility="gone"
+
         app:constraint_referenced_ids="calendar_view,bottom_sheet_ChipNextWeek,bottom_sheet_ChipTomorrow,bottom_sheet_ChipToday,textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
