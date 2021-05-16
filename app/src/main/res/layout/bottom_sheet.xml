@@ -164,7 +164,6 @@
         android:layout_width="280dp"
         android:layout_height="0dp"
         android:visibility="gone"
-
         app:constraint_referenced_ids="calendar_view,bottom_sheet_ChipNextWeek,bottom_sheet_ChipTomorrow,bottom_sheet_ChipToday,textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
